@@ -125,7 +125,7 @@ export default factory(function({
 
 	function checkNode(id: string, checked: boolean) {
 		if (checked) {
-			icache.set('checkedIds', (currentChecked) => [...currentChecked, id]);
+			icache.set('checkedIds', (currentChecked = []) => [...currentChecked, id]);
 		} else {
 			icache.set('checkedIds', (currentChecked) =>
 				currentChecked ? currentChecked.filter((n) => n !== id) : []
@@ -135,7 +135,7 @@ export default factory(function({
 	}
 
 	function expandNode(id: string) {
-		icache.set('expandedIds', (currentExpanded) => [...currentExpanded, id]);
+		icache.set('expandedIds', (currentExpanded = []) => [...currentExpanded, id]);
 		onExpand && onExpand(icache.get('expandedIds') || []);
 	}
 
